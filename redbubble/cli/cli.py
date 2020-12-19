@@ -5,14 +5,13 @@ import logging
 import os
 
 logging.basicConfig(level=os.environ.get('LOGLEVEL', 'INFO'))
-
 class Redbubble:
     def __init__(self):
         self.profile = webdriver.ChromeOptions()
         self.profile.add_argument("accept-language=en-US")
         self.profile.add_argument('--lang=en')
         self.profile.add_argument('headless')
-        self.driver = webdriver.Chrome(options=self.profile, executable_path='chromedriver.exe')
+        self.driver = webdriver.Chrome(options=self.profile, executable_path=os.path.dirname(__file__) + '\chromedriver.exe')
     
     def extract_keyword(self, url):
         self.driver.get(url)
